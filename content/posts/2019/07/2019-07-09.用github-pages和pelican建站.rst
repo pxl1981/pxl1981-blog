@@ -1,0 +1,74 @@
+===========================
+用GitHub Pages和Pelican建站
+===========================
+
+:date: 2019-07-09
+:modified: 2020-01-04
+:tags: GitHub, GitHub Pages, Pelican, 建站
+:category: 计算机技术
+:slug: creating-a-website-with-github-pages-and-pelican
+:authors: 潘晓亮
+:summary: 
+
+.. contents::
+
+作为一个喜欢偶尔写写文章的计算机技术爱好者，用 `GitHub Pages`_ 和 `Pelican`_ 建站发表文章是我最喜欢的一种方式。今天我就把这种方式介绍给你，下面我来简单的讲解下如何用GitHub Pages和Pelican建站。
+
+用GitHub Pages和Pelican建站需要具备使用 GitHub_ 和搭建 `Python虚拟环境`_ 的相关知识。如果你还不熟悉这些知识，那么需要你先学习一下 `Pro Git`_ 和 `Django Girls教程`_ 。
+
+下面是用GitHub Pages和Pelican建站的操作步骤：
+
+1. 注册一个GitHub账号，然后在GtiHub上创建两个代码仓库，一个用于托管Pelican部署后的源文件 ``PELICAN_SOURCE_REPOSITORY`` ，一个用于托管Pelican生成的网页文件 ``PELICAN_OUTPUT_REPOSITORY`` （这个代码仓库的名称需要创建成 ``YOUR_USERNAME.github.io`` 这样的形式）。在创建代码仓库时需要选择用于 Python_ 的 ``.gitignore`` ，并且选择一个 `自由软件许可证`_ 。
+
+2. 开启 ``PELICAN_OUTPUT_REPOSITORY`` 的GitHub Pages选项并勾选 ``Enforce HTTPS`` 。
+
+3. 安装最新版本的 Git_ 、Python_ 和 Virtualenv_ 。
+
+4. 将 ``PELICAN_SOURCE_REPOSITORY`` 和 ``PELICAN_OUTPUT_REPOSITORY`` 克隆到本地，克隆时将 ``PELICAN_OUTPUT_REPOSITORY`` 放在 ``PELICAN_SOURCE_REPOSITORY`` 的根目录下。
+
+5. 编辑 ``PELICAN_SOURCE_REPOSITORY`` 的 ``.gitignore`` ，在文件的最后一行添加如下代码::
+
+    # Pelican output folder
+    PELICAN_OUTPUT_REPOSITORY/
+
+6. 创建Pelican的Python虚拟环境。
+
+7. 在 ``PELICAN_SOURCE_REPOSITORY`` 的根目录下安装Pelican实例，并将 ``pelicanconf.py`` 中的 ``OUTPUT_PATH`` 设置为 ``PELICAN_OUTPUT_REPOSITORY`` 。
+
+8. 安装Pelican `主题`_ 和 `插件`_ 。
+
+9. 在 ``PELICAN_SOURCE_REPOSITORY`` 的 ``content`` 目录下创建后缀名为 ``.rst`` 的纯文本文件，然后用 reStructuredText_ 语法撰写文章。
+
+10. 在 ``PELICAN_SOURCE_REPOSITORY`` 的根目录下使用 ``pelican`` 命令将文章输出为网页文件存储到 ``PELICAN_OUTPUT_REPOSITORY`` 。
+
+11. 使用Git命令将 ``PELICAN_SOURCE_REPOSITORY`` 和 ``PELICAN_OUTPUT_REPOSITORY`` push到GitHub。
+
+以上的操作步骤是给有一定技术基础的人作为参考的说明。如果你看不太明白，建议你阅读这篇 `Creating a blog with Pelican and GitHub Pages`_ ，译文叫作 `使用Pelican和GitHub Pages来搭建博客`_ 。
+
+最后推荐一个Pelican主题和一些相关的Pelican插件，这个主题叫作 Elegant_ ，与其相关的Pelican插件有::
+
+    sitemap
+    extract_toc
+    tipue_search
+    neighbors
+    assets
+
+可以在 `Pelican插件的GitHub代码仓库`_ 中获取以上插件。
+
+.. _Git: https://git-scm.com
+.. _Pro Git: https://git-scm.com/book/zh
+.. _GitHub: https://github.com
+.. _GitHub Pages: https://pages.github.com
+.. _自由软件许可证: https://www.gnu.org/licenses/license-list.html
+.. _Python: https://www.python.org
+.. _Python虚拟环境: https://virtualenv.pypa.io
+.. _Virtualenv: https://virtualenv.pypa.io
+.. _Django Girls教程: https://tutorial.djangogirls.org/zh/
+.. _reStructuredText: http://docutils.sourceforge.net/rst.html
+.. _Pelican: https://getpelican.com
+.. _主题: https://github.com/getpelican/pelican-themes
+.. _插件: https://github.com/getpelican/pelican-plugins
+.. _Elegant: https://github.com/Pelican-Elegant/elegant
+.. _Creating a blog with Pelican and GitHub Pages: https://rsip22.github.io/blog/create-a-blog-with-pelican-and-github-pages.html
+.. _使用Pelican和GitHub Pages来搭建博客: https://linux.cn/article-9445-1.html
+.. _Pelican插件的GitHub代码仓库: https://github.com/getpelican/pelican-plugins
